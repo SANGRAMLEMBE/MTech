@@ -8,7 +8,6 @@ This repo is organized by subject for easy navigation and revision. Each subject
 
 
 # 🗂️ Folder Structure
-text
 mtech/
 ├── Inferential_Statistics/
 ├── Machine_Learning_Algorithms/
@@ -16,6 +15,7 @@ mtech/
 ├── Research_Methodology/
 ├── Applied_Data_Science/
 └── README.md (this file)
+
 
 
 
