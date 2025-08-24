@@ -8,14 +8,14 @@ This repo is organized by subject for easy navigation and revision. Each subject
 
 
 # 🗂️ Folder Structure
-undefined
+
 
 mtech/
-├── Inferential_Statistics/
-├── Machine_Learning_Algorithms/
-├── Deep_Neural_Network/
-├── Research_Methodology/
-├── Applied_Data_Science/
+├── Inferential_Statistics /
+├── Machine_Learning_Algorithms /
+├── Deep_Neural_Network /
+├── Research_Methodology /
+├── Applied_Data_Science /
 └── README.md (this file)
 
 
