@@ -1,0 +1,289 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {
+        "id": "AUNkvXcapvgE"
+      },
+      "outputs": [],
+      "source": [
+        "# Cell 1: Imports\n",
+        "import numpy as np\n",
+        "import matplotlib.pyplot as plt"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def sigmoid(x):\n",
+        "    return 1 / (1 + np.exp(-x))\n",
+        "\n",
+        "def sigmoid_grad(x):\n",
+        "    return sigmoid(x) * (1 - sigmoid(x))\n",
+        "\n",
+        "x = np.linspace(-10, 10, 400)\n",
+        "plt.figure(figsize=(8, 4))\n",
+        "plt.plot(x, sigmoid(x), label='Sigmoid σ(x)')\n",
+        "plt.plot(x, sigmoid_grad(x), label=\"Gradient σ'(x)\")\n",
+        "plt.title('Sigmoid Function and Gradient')\n",
+        "plt.xlabel('x')\n",
+        "plt.ylabel('Value')\n",
+        "plt.legend()\n",
+        "plt.grid(True)\n",
+        "plt.show()  # For slides: plt.savefig('sigmoid_plot.png')"
+      ],
+      "metadata": {
+        "id": "NwTOEbiep4eW"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Cell 3: Tanh and Gradient\n",
+        "def tanh(x):\n",
+        "    return np.tanh(x)\n",
+        "\n",
+        "def tanh_grad(x):\n",
+        "    return 1 - tanh(x)**2\n",
+        "\n",
+        "plt.figure(figsize=(8, 4))\n",
+        "plt.plot(x, tanh(x), label='Tanh(x)')\n",
+        "plt.plot(x, tanh_grad(x), label=\"Gradient tanh'(x)\")\n",
+        "plt.title('Tanh Function and Gradient')\n",
+        "plt.xlabel('x')\n",
+        "plt.ylabel('Value')\n",
+        "plt.legend()\n",
+        "plt.grid(True)\n",
+        "plt.show()  # For slides: plt.savefig('tanh_plot.png')"
+      ],
+      "metadata": {
+        "id": "hXo4P1SZp5FA"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Cell 4: ReLU and Gradient\n",
+        "def relu(x):\n",
+        "    return np.maximum(0, x)\n",
+        "\n",
+        "def relu_grad(x):\n",
+        "    return np.where(x > 0, 1, 0)\n",
+        "\n",
+        "plt.figure(figsize=(8, 4))\n",
+        "plt.plot(x, relu(x), label='ReLU(x)')\n",
+        "plt.plot(x, relu_grad(x), label=\"Gradient ReLU'(x)\")\n",
+        "plt.title('ReLU Function and Gradient')\n",
+        "plt.xlabel('x')\n",
+        "plt.ylabel('Value')\n",
+        "plt.legend()\n",
+        "plt.grid(True)\n",
+        "plt.show()  # For slides: plt.savefig('relu_plot.png')"
+      ],
+      "metadata": {
+        "id": "tc2ruYKrp-_S"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def leaky_relu(x, alpha=0.01):\n",
+        "    return np.where(x > 0, x, alpha * x)\n",
+        "\n",
+        "def leaky_relu_grad(x, alpha=0.01):\n",
+        "    return np.where(x > 0, 1, alpha)\n",
+        "\n",
+        "plt.figure(figsize=(8, 4))\n",
+        "plt.plot(x, leaky_relu(x), label='Leaky ReLU(x)')\n",
+        "plt.plot(x, leaky_relu_grad(x), label=\"Gradient Leaky ReLU'(x)\")\n",
+        "plt.title('Leaky ReLU Function and Gradient (α=0.01)')\n",
+        "plt.xlabel('x')\n",
+        "plt.ylabel('Value')\n",
+        "plt.legend()\n",
+        "plt.grid(True)\n",
+        "plt.show()  # For slides: plt.savefig('leaky_relu_plot.png')"
+      ],
+      "metadata": {
+        "id": "K7hO-a0VqCap"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Cell 6: Comparison Overlay\n",
+        "plt.figure(figsize=(10, 5))\n",
+        "plt.plot(x, sigmoid(x), label='Sigmoid')\n",
+        "plt.plot(x, tanh(x), label='Tanh')\n",
+        "plt.plot(x, relu(x), label='ReLU')\n",
+        "plt.plot(x, leaky_relu(x), label='Leaky ReLU')\n",
+        "plt.title('Activation Functions Comparison')\n",
+        "plt.xlabel('x')\n",
+        "plt.ylabel('Value')\n",
+        "plt.legend()\n",
+        "plt.grid(True)\n",
+        "plt.show()  # For slides: plt.savefig('comparison_plot.png')"
+      ],
+      "metadata": {
+        "id": "xcwPJ03qqFWY"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Swish Function and Gradient\n",
+        "def swish(x):\n",
+        "    return x * sigmoid(x)\n",
+        "\n",
+        "def sigmoid(x):\n",
+        "    return 1 / (1 + np.exp(-x))\n",
+        "\n",
+        "def swish_grad(x):\n",
+        "    sig = sigmoid(x)\n",
+        "    return sig + x * sig * (1 - sig)\n",
+        "\n",
+        "x = np.linspace(-10, 10, 400)\n",
+        "plt.figure(figsize=(8, 4))\n",
+        "plt.plot(x, swish(x), label='Swish(x) = x * σ(x)')\n",
+        "plt.plot(x, swish_grad(x), label=\"Gradient Swish'(x)\")\n",
+        "plt.title('Swish Function and Gradient')\n",
+        "plt.xlabel('x')\n",
+        "plt.ylabel('Value')\n",
+        "plt.legend()\n",
+        "plt.grid(True)\n",
+        "plt.show()  # For slides: plt.savefig('swish_plot.png')"
+      ],
+      "metadata": {
+        "id": "N19cDunPqJkw"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        " # GELU Function and Gradient\n",
+        "def gelu(x):\n",
+        "    return x * 0.5 * (1 + np.tanh(np.sqrt(2 / np.pi) * (x + 0.044715 * x**3)))\n",
+        "\n",
+        "def gelu_grad(x):\n",
+        "    # Approximate gradient using the derivative of GELU\n",
+        "    a = np.sqrt(2 / np.pi)\n",
+        "    b = 0.044715\n",
+        "    tanh_term = np.tanh(a * (x + b * x**3))\n",
+        "    sech_term = 1 - tanh_term**2\n",
+        "    return 0.5 * (1 + tanh_term) + 0.5 * x * sech_term * a * (1 + 3 * b * x**2)\n",
+        "\n",
+        "plt.figure(figsize=(8, 4))\n",
+        "plt.plot(x, gelu(x), label='GELU(x)')\n",
+        "plt.plot(x, gelu_grad(x), label=\"Gradient GELU'(x)\")\n",
+        "plt.title('GELU Function and Gradient')\n",
+        "plt.xlabel('x')\n",
+        "plt.ylabel('Value')\n",
+        "plt.legend()\n",
+        "plt.grid(True)\n",
+        "plt.show()  # For slides: plt.savefig('gelu_plot.png')"
+      ],
+      "metadata": {
+        "id": "J91ChzsyrxkN"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "# Comparison Overlay\n",
+        "plt.figure(figsize=(10, 5))\n",
+        "plt.plot(x, swish(x), label='Swish')\n",
+        "plt.plot(x, gelu(x), label='GELU')\n",
+        "plt.title('Swish vs GELU Comparison')\n",
+        "plt.xlabel('x')\n",
+        "plt.ylabel('Value')\n",
+        "plt.legend()\n",
+        "plt.grid(True)\n",
+        "plt.show()  # For slides: plt.savefig('swish_gelu_comparison.png')"
+      ],
+      "metadata": {
+        "id": "6yvD1KTmr1G8"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "GMbDlh9xvNZ1"
+      },
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "source": [
+        "$$\n",
+        "A =\n",
+        "\\begin{bmatrix}\n",
+        "1 & 2 \\\\\n",
+        "3 & 4\n",
+        "\\end{bmatrix}, \\quad\n",
+        "B =\n",
+        "\\begin{bmatrix}\n",
+        "5 & 6 \\\\\n",
+        "7 & 8\n",
+        "\\end{bmatrix}\n",
+        "$$\n",
+        "\n",
+        "$$\n",
+        "C = A \\times B =\n",
+        "\\begin{bmatrix}\n",
+        "1\\cdot 5 + 2\\cdot 7 & 1\\cdot 6 + 2\\cdot 8 \\\\\n",
+        "3\\cdot 5 + 4\\cdot 7 & 3\\cdot 6 + 4\\cdot 8\n",
+        "\\end{bmatrix}\n",
+        "=\n",
+        "\\begin{bmatrix}\n",
+        "19 & 22 \\\\\n",
+        "43 & 50\n",
+        "\\end{bmatrix}\n",
+        "$$\n"
+      ],
+      "metadata": {
+        "id": "6wd4Lk7Ev0tn"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "teootlCwv3Zk"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}

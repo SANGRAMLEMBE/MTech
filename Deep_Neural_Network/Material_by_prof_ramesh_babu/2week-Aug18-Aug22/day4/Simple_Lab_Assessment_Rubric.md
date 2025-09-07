@@ -130,7 +130,7 @@
 
 **Overall Understanding:** ⚪ Excellent ⚪ Good ⚪ Satisfactory ⚪ Needs Work
 
-**Final Grade:** _____ / 100
+**Final Grade:** _____ / 10
 
 **Comments:** _______________________________________________
 
